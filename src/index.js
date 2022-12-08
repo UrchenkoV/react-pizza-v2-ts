@@ -9,6 +9,10 @@ import Default from "./layouts/Default";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 
+/**
+ *
+ */
+
 const router = createBrowserRouter([
   {
     path: "/",
