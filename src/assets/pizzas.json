@@ -1,0 +1,193 @@
+[{
+    "id": 1,
+    "title": "Чизбургер-пицца 1",
+    "price": 385,
+    "image": "https://dodopizza-a.akamaihd.net/static/Img/Products/a94efc00c02340daab51a69b7b580600_292x292.webp",
+    "sizes": [{
+      "id": 1,
+      "value": 26
+    }, {
+      "id": 2,
+      "value": 30
+    }, {
+      "id": 3,
+      "value": 40
+    }],
+    "types": [{
+      "id": 1,
+      "title": "тонкое"
+    }, {
+      "id": 2,
+      "title": "традиционное"
+    }],
+    "category_ids": [2, 3]
+  },
+  {
+    "id": 2,
+    "title": "Чизбургер-пицца 2",
+    "price": 395,
+    "image": "https://dodopizza-a.akamaihd.net/static/Img/Products/d9c609f1422247f2b87b6293eb461ff0_292x292.webp",
+    "sizes": [{
+      "id": 1,
+      "value": 26
+    }, {
+      "id": 2,
+      "value": 30
+    }, {
+      "id": 3,
+      "value": 40
+    }],
+    "types": [{
+      "id": 1,
+      "title": "тонкое"
+    }, {
+      "id": 2,
+      "title": "традиционное"
+    }],
+    "category_ids": [4, 5]
+  },
+  {
+    "id": 3,
+    "title": "Чизбургер-пицца 3",
+    "price": 370,
+    "image": "https://dodopizza-a.akamaihd.net/static/Img/Products/c8ac7d2eb95b4bd0b8bc2f366415896c_292x292.webp",
+    "sizes": [{
+      "id": 1,
+      "value": 26
+    }, {
+      "id": 2,
+      "value": 30
+    }, {
+      "id": 3,
+      "value": 40
+    }],
+    "types": [{
+      "id": 1,
+      "title": "тонкое"
+    }, {
+      "id": 2,
+      "title": "традиционное"
+    }],
+    "category_ids": [2, 6]
+  },
+  {
+    "id": 4,
+    "title": "Чизбургер-пицца 4",
+    "price": 425,
+    "image": "https://dodopizza-a.akamaihd.net/static/Img/Products/c8ac7d2eb95b4bd0b8bc2f366415896c_292x292.webp",
+    "sizes": [{
+      "id": 1,
+      "value": 26
+    }, {
+      "id": 2,
+      "value": 30
+    }, {
+      "id": 3,
+      "value": 40
+    }],
+    "types": [{
+      "id": 1,
+      "title": "тонкое"
+    }, {
+      "id": 2,
+      "title": "традиционное"
+    }],
+    "category_ids": [6, 3]
+  },
+  {
+    "id": 5,
+    "title": "Чизбургер-пицца 5",
+    "price": 405,
+    "image": "https://dodopizza-a.akamaihd.net/static/Img/Products/42360a7dcb7640c998b723231586fe84_292x292.webp",
+    "sizes": [{
+      "id": 1,
+      "value": 26
+    }, {
+      "id": 2,
+      "value": 30
+    }, {
+      "id": 3,
+      "value": 40
+    }],
+    "types": [{
+      "id": 1,
+      "title": "тонкое"
+    }, {
+      "id": 2,
+      "title": "традиционное"
+    }],
+    "category_ids": [2, 3]
+  },
+  {
+    "id": 6,
+    "title": "Чизбургер-пицца 6",
+    "price": 450,
+    "image": "https://dodopizza-a.akamaihd.net/static/Img/Products/fb9cc5b8ff2e47bdbcbdcb5930cddf06_292x292.webp",
+    "sizes": [{
+      "id": 1,
+      "value": 26
+    }, {
+      "id": 2,
+      "value": 30
+    }, {
+      "id": 3,
+      "value": 40
+    }],
+    "types": [{
+      "id": 1,
+      "title": "тонкое"
+    }, {
+      "id": 2,
+      "title": "традиционное"
+    }],
+    "category_ids": [4, 5]
+  },
+  {
+    "id": 7,
+    "title": "Чизбургер-пицца 7",
+    "price": 370,
+    "image": "https://dodopizza-a.akamaihd.net/static/Img/Products/50555f951a6d4fd4ac0088c099eb3769_292x292.webp",
+    "sizes": [{
+      "id": 1,
+      "value": 26
+    }, {
+      "id": 2,
+      "value": 30
+    }, {
+      "id": 3,
+      "value": 40
+    }],
+    "types": [{
+      "id": 1,
+      "title": "тонкое"
+    }, {
+      "id": 2,
+      "title": "традиционное"
+    }],
+    "category_ids": [2, 6]
+  },
+  {
+    "id": 8,
+    "title": "Чизбургер-пицца 8",
+    "price": 517,
+    "image": "https://dodopizza-a.akamaihd.net/static/Img/Products/de6a807a500c4a4dbd0a5b31eacbbff7_292x292.webp",
+    "sizes": [{
+      "id": 1,
+      "value": 26
+    }, {
+      "id": 2,
+      "value": 30
+    }, {
+      "id": 3,
+      "value": 40
+    }],
+    "types": [{
+      "id": 1,
+      "title": "тонкое"
+    }, {
+      "id": 2,
+      "title": "традиционное"
+    }],
+    "category_ids": [6, 3]
+  }
+]
