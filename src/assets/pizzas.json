@@ -20,7 +20,7 @@
       "id": 2,
       "title": "традиционное"
     }],
-    "category_ids": [2, 3]
+    "category_id": 2
   },
   {
     "id": 2,
@@ -44,7 +44,7 @@
       "id": 2,
       "title": "традиционное"
     }],
-    "category_ids": [4, 5]
+    "category_id": 3
   },
   {
     "id": 3,
@@ -68,7 +68,7 @@
       "id": 2,
       "title": "традиционное"
     }],
-    "category_ids": [2, 6]
+    "category_id": 4
   },
   {
     "id": 4,
@@ -92,7 +92,7 @@
       "id": 2,
       "title": "традиционное"
     }],
-    "category_ids": [6, 3]
+    "category_id": 5
   },
   {
     "id": 5,
@@ -116,7 +116,7 @@
       "id": 2,
       "title": "традиционное"
     }],
-    "category_ids": [2, 3]
+    "category_id": 6
   },
   {
     "id": 6,
@@ -140,7 +140,7 @@
       "id": 2,
       "title": "традиционное"
     }],
-    "category_ids": [4, 5]
+    "category_id": 3
   },
   {
     "id": 7,
@@ -164,7 +164,7 @@
       "id": 2,
       "title": "традиционное"
     }],
-    "category_ids": [2, 6]
+    "category_id": 5
   },
   {
     "id": 8,
@@ -188,6 +188,54 @@
       "id": 2,
       "title": "традиционное"
     }],
-    "category_ids": [6, 3]
+    "category_id": 6
+  },
+  {
+    "id": 9,
+    "title": "Чизбургер-пицца 9",
+    "price": 517,
+    "image": "https://dodopizza-a.akamaihd.net/static/Img/Products/de6a807a500c4a4dbd0a5b31eacbbff7_292x292.webp",
+    "sizes": [{
+      "id": 1,
+      "value": 26
+    }, {
+      "id": 2,
+      "value": 30
+    }, {
+      "id": 3,
+      "value": 40
+    }],
+    "types": [{
+      "id": 1,
+      "title": "тонкое"
+    }, {
+      "id": 2,
+      "title": "традиционное"
+    }],
+    "category_id": 2
+  },
+  {
+    "id": 10,
+    "title": "Чизбургер-пицца 10",
+    "price": 517,
+    "image": "https://dodopizza-a.akamaihd.net/static/Img/Products/de6a807a500c4a4dbd0a5b31eacbbff7_292x292.webp",
+    "sizes": [{
+      "id": 1,
+      "value": 26
+    }, {
+      "id": 2,
+      "value": 30
+    }, {
+      "id": 3,
+      "value": 40
+    }],
+    "types": [{
+      "id": 1,
+      "title": "тонкое"
+    }, {
+      "id": 2,
+      "title": "традиционное"
+    }],
+    "category_id": 4
   }
 ]

@@ -1,11 +1,22 @@
+import React from "react";
+
 import Categories from "../components/Categories";
 import PizzaBlock from "../components/PizzaBlock";
 import Sort from "../components/Sort";
 
-import pizzas from "../assets/pizzas.json";
-
 export default function Home() {
-  console.log(pizzas);
+  const [items, setItems] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("https://6393398dab513e12c507abcf.mockapi.io/items")
+      .then((res) => res.json())
+      .then((data) => {
+        setItems(data);
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="container">
       <div className="content__top">
@@ -16,8 +27,8 @@ export default function Home() {
       <h2 className="content__title">Все пиццы</h2>
 
       <div className="content__items">
-        {pizzas.map((pizza) => (
-          <PizzaBlock key={pizza.id} {...pizza} />
+        {items.map((obj) => (
+          <PizzaBlock key={obj.id} {...obj} />
         ))}
       </div>
     </div>
