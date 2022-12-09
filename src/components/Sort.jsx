@@ -6,6 +6,11 @@ export default function Sort() {
 
   const sorts = ["популярности", "цене", "алфавиту"];
 
+  const onSelected = (i) => {
+    setActiveIndex(i);
+    setIsOpen(false);
+  };
+
   return (
     <div className="sort">
       <div className="sort__label">
@@ -30,7 +35,7 @@ export default function Sort() {
           <ul>
             {sorts.map((item, i) => (
               <li
-                onClick={() => setActiveIndex(i)}
+                onClick={() => onSelected(i)}
                 key={i}
                 className={activeIndex === i ? "active" : ""}
               >
