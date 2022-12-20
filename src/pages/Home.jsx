@@ -8,7 +8,7 @@ export default function Home() {
   const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("https://6393398dab513e12c507abcf.mockapi.io/items")
+    fetch("/items")
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
