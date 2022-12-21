@@ -2,19 +2,21 @@ import React from "react";
 
 import Categories from "../components/Categories";
 import PizzaBlock from "../components/PizzaBlock";
+import PizzaBlockSkeleton from "../components/PizzaBlockSkeleton";
 import Sort from "../components/Sort";
 
 export default function Home() {
   const [items, setItems] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     fetch("/items")
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
-        console.log(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
@@ -27,9 +29,9 @@ export default function Home() {
       <h2 className="content__title">Все пиццы</h2>
 
       <div className="content__items">
-        {items.map((obj) => (
-          <PizzaBlock key={obj.id} {...obj} />
-        ))}
+        {isLoading
+          ? [...new Array(10)].map((item, i) => <PizzaBlockSkeleton key={i} />)
+          : items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
       </div>
     </div>
   );
