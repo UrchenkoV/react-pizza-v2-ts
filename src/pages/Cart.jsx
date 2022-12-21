@@ -1,20 +1,27 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import CartEmpty from "../components/CartEmpty";
-import CartPizzaBlock from '../components/CartPizzaBlock';
+import CartPizzaBlock from "../components/CartPizzaBlock";
 
 export default function Cart() {
   const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/items').then(res => res.json())
-     .then(data => {
-      setItems(data)
-      console.log(data);
-     })
-     .catch(err => console.log(err))
-  }, [])
+    fetch("/items")
+      .then((res) => res.json())
+      .then((data) => {
+        setItems(data);
+        console.log(data);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+  }, []);
+
+  if (!isLoading && !items.length) {
+    return <CartEmpty />;
+  }
 
   return (
     <div className="container container--cart">
@@ -95,7 +102,11 @@ export default function Cart() {
         </div>
 
         <div className="content__items">
-          <CartPizzaBlock />
+          {isLoading ? (
+            <p>Загрузка...</p>
+          ) : (
+            items.map((item) => <CartPizzaBlock key={item.id} {...item} />)
+          )}
         </div>
 
         <div className="cart__bottom">
