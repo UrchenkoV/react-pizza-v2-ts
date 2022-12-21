@@ -8,6 +8,7 @@ import Default from "./layouts/Default";
 
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import NotFound from "./pages/NotFound";
 
 /**
  *
@@ -26,7 +27,12 @@ const router = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
+      {
+        path: '*',
+        element: <NotFound />
+      },
     ],
+    
   },
 ]);
 
