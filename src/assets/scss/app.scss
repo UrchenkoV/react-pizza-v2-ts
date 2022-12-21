@@ -1,7 +1,7 @@
-@import 'variables';
-@import 'libs/normalize';
+@import "variables";
+@import "libs/normalize";
 
-@import 'components/all';
+@import "components/all";
 
 body {
   background-color: $background;
@@ -31,8 +31,15 @@ body {
 
   &__top {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column-reverse;
+    gap: 20px;
+    justify-content: center;
+
+    @media (min-width: 1280px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 }
 
