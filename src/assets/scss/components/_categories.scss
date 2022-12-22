@@ -1,10 +1,9 @@
 .categories {
-  max-width: -webkit-fill-available;
+  overflow-x: auto;
 
   ul {
     display: flex;
     gap: 10px;
-    overflow-x: auto;
 
     li {
       background-color: #f9f9f9;
@@ -15,7 +14,7 @@
       transition: background-color 0.1s ease-in-out;
       @include noselect();
 
-      @media (min-width: 1024px) {
+      @media (min-width: 1280px) {
         padding: 13px 30px;
       }
 

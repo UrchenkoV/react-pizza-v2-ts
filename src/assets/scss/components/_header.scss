@@ -4,15 +4,33 @@
 
   .container {
     display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   &__logo {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 
-    img {
-      margin-right: 15px;
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+
+    div {
+      text-align: center;
+
+      @media (min-width: 768px) {
+        text-align: start;
+      }
     }
 
     h1 {

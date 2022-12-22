@@ -8,12 +8,17 @@ body {
 }
 
 .wrapper {
-  width: calc(100vw - 100px);
+  width: calc(100% - 20px);
   height: 100%;
   background-color: #fff;
-  margin: 50px auto;
+  margin: 20px auto;
   border-radius: 10px;
   max-width: 1400px;
+
+  @media (min-width: 1280px) {
+    width: calc(100% - 100px);
+    margin: 50px auto;
+  }
 }
 
 .content {
@@ -24,9 +29,23 @@ body {
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-gap: 55px 15px;
+    grid-template-columns: repeat(1, 280px);
+    justify-content: center;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 280px);
+      justify-content: space-between;
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 280px);
+    }
+
+    @media (min-width: 1280px) {
+      grid-template-columns: repeat(4, 280px);
+    }
   }
 
   &__top {
@@ -59,8 +78,14 @@ body {
 .cart {
   &__top {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
   .content__title {
@@ -112,18 +137,31 @@ body {
     }
   }
 
+  .content__items {
+    display: block;
+  }
+
   &__item {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     border-top: 1px solid $gray-line;
     padding-top: 30px;
     margin-top: 30px;
+    gap: 15px;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
 
     &-img {
       display: flex;
       align-items: center;
-      margin-right: 15px;
-      width: 10%;
+
+      @media (min-width: 768px) {
+        width: 10%;
+      }
 
       img {
         width: 80px;
@@ -135,7 +173,12 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 40%;
+      align-items: center;
+
+      @media (min-width: 768px) {
+        width: 40%;
+        align-items: start;
+      }
 
       h3 {
         font-weight: bold;
@@ -154,7 +197,11 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 13%;
+      gap: 10px;
+
+      @media (min-width: 768px) {
+        width: 13%;
+      }
 
       &-minus {
         svg {
@@ -173,7 +220,10 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 33%;
+
+      @media (min-width: 768px) {
+        width: 33%;
+      }
 
       b {
         font-weight: bold;
@@ -186,7 +236,10 @@ body {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      width: 4%;
+
+      @media (min-width: 768px) {
+        width: 4%;
+      }
 
       .button {
         border-color: darken($color: $gray-line, $amount: 10);
