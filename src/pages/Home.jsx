@@ -1,9 +1,12 @@
 import React from "react";
+import { useOutletContext } from "react-router-dom";
 
 import Categories from "../components/Categories";
 import PizzaBlock from "../components/PizzaBlock";
 import PizzaBlockSkeleton from "../components/PizzaBlockSkeleton";
 import Sort from "../components/Sort";
+import Pagination from "../components/Pagination";
+import { useState } from "react";
 
 export default function Home() {
   const [items, setItems] = React.useState([]);
@@ -13,6 +16,9 @@ export default function Home() {
     title: "Популярности (Убыванию)",
     sortProperty: "rating",
   });
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [searchValue] = useOutletContext();
 
   React.useEffect(() => {
     const category =
@@ -20,17 +26,20 @@ export default function Home() {
 
     const order = sortBy.sortProperty.includes("-") ? "asc" : "desc";
     const orderBy = sortBy.sortProperty.replace("-", "");
+    const search = searchValue ? `&title=${searchValue}` : "";
 
     setIsLoading(true);
 
-    fetch(`/items?${category}&orderBy=${orderBy}&order=${order}`)
+    fetch(
+      `/items?page=${currentPage}&limit=4&${category}&orderBy=${orderBy}&order=${order}${search}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
       })
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
-  }, [activeCategoryIndex, sortBy]);
+  }, [activeCategoryIndex, sortBy, searchValue, currentPage]);
 
   return (
     <div className="container">
@@ -46,9 +55,11 @@ export default function Home() {
 
       <div className="content__items">
         {isLoading
-          ? [...new Array(10)].map((item, i) => <PizzaBlockSkeleton key={i} />)
+          ? [...new Array(10)].map((_, i) => <PizzaBlockSkeleton key={i} />)
           : items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
       </div>
+
+      <Pagination onChangePage={(number) => setCurrentPage(number)} />
     </div>
   );
 }

@@ -11,7 +11,7 @@ export default function Default() {
       <Header searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <div className="content">
-        <Outlet />
+        <Outlet context={[searchValue]} />
       </div>
     </div>
   );
