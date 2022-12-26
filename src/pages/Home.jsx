@@ -1,12 +1,13 @@
 import React from "react";
-import { useOutletContext } from "react-router-dom";
 
 import Categories from "../components/Categories";
 import PizzaBlock from "../components/PizzaBlock";
 import PizzaBlockSkeleton from "../components/PizzaBlockSkeleton";
 import Sort from "../components/Sort";
 import Pagination from "../components/Pagination";
+
 import { useState } from "react";
+import { AppContext } from "../layouts/Default";
 
 export default function Home() {
   const [items, setItems] = React.useState([]);
@@ -18,7 +19,7 @@ export default function Home() {
   });
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [searchValue] = useOutletContext();
+  const { searchValue } = React.useContext(AppContext);
 
   React.useEffect(() => {
     const category =

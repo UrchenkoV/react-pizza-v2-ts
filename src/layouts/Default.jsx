@@ -1,18 +1,22 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 import { Outlet } from "react-router-dom";
 
 import Header from "../components/Header";
+
+export const AppContext = createContext({});
 
 export default function Default() {
   const [searchValue, setSearchValue] = useState("");
 
   return (
     <div className="wrapper">
-      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
+      <AppContext.Provider value={{ searchValue, setSearchValue }}>
+        <Header />
 
-      <div className="content">
-        <Outlet context={[searchValue]} />
-      </div>
+        <div className="content">
+          <Outlet />
+        </div>
+      </AppContext.Provider>
     </div>
   );
 }
