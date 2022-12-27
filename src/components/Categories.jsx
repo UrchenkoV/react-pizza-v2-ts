@@ -1,4 +1,7 @@
-export default function Categories({ value, onClick }) {
+import { useSelector, useDispatch } from "react-redux";
+import { setCategoryId } from "../redux/slices/categorySlice";
+
+export default function Categories() {
   const categories = [
     "Все",
     "Мясные",
@@ -8,14 +11,17 @@ export default function Categories({ value, onClick }) {
     "Закрытые",
   ];
 
+  const dispatch = useDispatch();
+  const categoryId = useSelector((state) => state.category.categoryId);
+
   return (
     <div className="categories">
       <ul>
         {categories.map((cat, index) => (
           <li
             key={index}
-            className={value === index ? "active" : ""}
-            onClick={() => onClick(index)}
+            className={categoryId === index ? "active" : ""}
+            onClick={() => dispatch(setCategoryId(index))}
           >
             {cat}
           </li>

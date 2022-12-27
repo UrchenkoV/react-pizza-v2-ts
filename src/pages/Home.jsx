@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import Categories from "../components/Categories";
 import PizzaBlock from "../components/PizzaBlock";
@@ -12,7 +13,6 @@ import { AppContext } from "../layouts/Default";
 export default function Home() {
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [activeCategoryIndex, setActiveCategoryIndex] = React.useState(0);
   const [sortBy, setSortBy] = React.useState({
     title: "Популярности (Убыванию)",
     sortProperty: "rating",
@@ -20,10 +20,10 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const { searchValue } = React.useContext(AppContext);
+  const categoryId = useSelector((state) => state.category.categoryId);
 
   React.useEffect(() => {
-    const category =
-      activeCategoryIndex > 0 ? `category_id=${activeCategoryIndex}` : "";
+    const category = categoryId > 0 ? `category_id=${categoryId}` : "";
 
     const order = sortBy.sortProperty.includes("-") ? "asc" : "desc";
     const orderBy = sortBy.sortProperty.replace("-", "");
@@ -40,15 +40,12 @@ export default function Home() {
       })
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
-  }, [activeCategoryIndex, sortBy, searchValue, currentPage]);
+  }, [sortBy, searchValue, currentPage, categoryId]);
 
   return (
     <div className="container">
       <div className="content__top">
-        <Categories
-          value={activeCategoryIndex}
-          onClick={(catId) => setActiveCategoryIndex(catId)}
-        />
+        <Categories />
 
         <Sort sortBy={(obj) => setSortBy(obj)} />
       </div>
