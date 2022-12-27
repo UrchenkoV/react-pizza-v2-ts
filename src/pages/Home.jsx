@@ -13,20 +13,18 @@ import { AppContext } from "../layouts/Default";
 export default function Home() {
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [sortBy, setSortBy] = React.useState({
-    title: "Популярности (Убыванию)",
-    sortProperty: "rating",
-  });
   const [currentPage, setCurrentPage] = useState(1);
 
   const { searchValue } = React.useContext(AppContext);
-  const categoryId = useSelector((state) => state.category.categoryId);
+
+  const { categoryId, sort } = useSelector((state) => state.filter);
+  console.log("home", categoryId, sort);
 
   React.useEffect(() => {
     const category = categoryId > 0 ? `category_id=${categoryId}` : "";
-
-    const order = sortBy.sortProperty.includes("-") ? "asc" : "desc";
-    const orderBy = sortBy.sortProperty.replace("-", "");
+    console.log("home useeffect", categoryId);
+    const order = sort.sortProperty.includes("-") ? "asc" : "desc";
+    const orderBy = sort.sortProperty.replace("-", "");
     const search = searchValue ? `&title=${searchValue}` : "";
 
     setIsLoading(true);
@@ -40,14 +38,14 @@ export default function Home() {
       })
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
-  }, [sortBy, searchValue, currentPage, categoryId]);
+  }, [searchValue, currentPage, categoryId, sort]);
 
   return (
     <div className="container">
       <div className="content__top">
         <Categories />
 
-        <Sort sortBy={(obj) => setSortBy(obj)} />
+        <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
 

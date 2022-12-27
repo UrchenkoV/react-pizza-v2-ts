@@ -1,20 +1,24 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { setSort } from "../redux/slices/filterSlice";
 
-export default function Sort({ sortBy }) {
+const sorts = [
+  { title: "Популярности (Убыванию)", sortProperty: "rating" },
+  { title: "Популярности (Возрастанию)", sortProperty: "-rating" },
+  { title: "Цене (Убыванию)", sortProperty: "price" },
+  { title: "Цене (Возрастанию)", sortProperty: "-price" },
+  { title: "Алфавиту (Убыванию)", sortProperty: "title" },
+  { title: "Алфавиту (Возрастанию)", sortProperty: "-title" },
+];
+
+export default function Sort() {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const sorts = [
-    { title: "Популярности (Убыванию)", sortProperty: "rating" },
-    { title: "Популярности (Возрастанию)", sortProperty: "-rating" },
-    { title: "Цене (Убыванию)", sortProperty: "price" },
-    { title: "Цене (Возрастанию)", sortProperty: "-price" },
-    { title: "Алфавиту (Убыванию)", sortProperty: "title" },
-    { title: "Алфавиту (Возрастанию)", sortProperty: "-title" },
-  ];
+  const dispatch = useDispatch();
 
   const onSelected = (obj, i) => {
-    sortBy(obj);
+    dispatch(setSort(obj));
     setActiveIndex(i);
     setIsOpen(false);
   };
