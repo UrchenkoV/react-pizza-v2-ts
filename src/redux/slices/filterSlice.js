@@ -6,6 +6,7 @@ const initialState = {
     title: "Популярности (Убыванию)",
     sortProperty: "rating",
   },
+  currentPage: 1,
 };
 
 export const categorySlice = createSlice({
@@ -18,9 +19,12 @@ export const categorySlice = createSlice({
     setSort(state, action) {
       state.sort = action.payload;
     },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
   },
 });
 
-export const { setCategoryId, setSort } = categorySlice.actions;
+export const { setCategoryId, setSort, setCurrentPage } = categorySlice.actions;
 
 export default categorySlice.reducer;

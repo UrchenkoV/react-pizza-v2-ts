@@ -1,5 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+
+import { setCurrentPage } from "../redux/slices/filterSlice";
 
 import Categories from "../components/Categories";
 import PizzaBlock from "../components/PizzaBlock";
@@ -7,37 +10,37 @@ import PizzaBlockSkeleton from "../components/PizzaBlockSkeleton";
 import Sort from "../components/Sort";
 import Pagination from "../components/Pagination";
 
-import { useState } from "react";
 import { AppContext } from "../layouts/Default";
 
 export default function Home() {
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
 
   const { searchValue } = React.useContext(AppContext);
+  const dispatch = useDispatch();
 
-  const { categoryId, sort } = useSelector((state) => state.filter);
-  console.log("home", categoryId, sort);
+  const { categoryId, sort, currentPage } = useSelector(
+    (state) => state.filter
+  );
 
   React.useEffect(() => {
     const category = categoryId > 0 ? `category_id=${categoryId}` : "";
-    console.log("home useeffect", categoryId);
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
     const orderBy = sort.sortProperty.replace("-", "");
     const search = searchValue ? `&title=${searchValue}` : "";
 
-    setIsLoading(true);
-
-    fetch(
-      `/items?page=${currentPage}&limit=4&${category}&orderBy=${orderBy}&order=${order}${search}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
+    (async () => {
+      setIsLoading(true);
+      try {
+        const { data } = await axios.get(
+          `/items?page=${currentPage}&limit=4&${category}&orderBy=${orderBy}&order=${order}${search}`
+        );
         setItems(data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
+      } catch (error) {
+        console.log(error);
+      }
+      setIsLoading(false);
+    })();
   }, [searchValue, currentPage, categoryId, sort]);
 
   return (
@@ -55,7 +58,7 @@ export default function Home() {
           : items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
       </div>
 
-      <Pagination onChangePage={(number) => setCurrentPage(number)} />
+      <Pagination onChangePage={(number) => dispatch(setCurrentPage(number))} />
     </div>
   );
 }
