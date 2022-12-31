@@ -22,9 +22,15 @@ export const categorySlice = createSlice({
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
     },
+    setQuery(state, action) {
+      state.sort = action.payload.sort;
+      state.categoryId = Number(action.payload.category);
+      state.currentPage = Number(action.payload.page);
+    },
   },
 });
 
-export const { setCategoryId, setSort, setCurrentPage } = categorySlice.actions;
+export const { setCategoryId, setSort, setCurrentPage, setQuery } =
+  categorySlice.actions;
 
 export default categorySlice.reducer;
