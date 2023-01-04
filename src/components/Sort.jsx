@@ -14,6 +14,7 @@ export const sorts = [
 export default function Sort() {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [isOpen, setIsOpen] = React.useState(false);
+  const sortRef = React.useRef(null);
 
   const dispatch = useDispatch();
 
@@ -23,8 +24,20 @@ export default function Sort() {
     setIsOpen(false);
   };
 
+  React.useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (sortRef.current && !e.path.includes(sortRef.current)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.body.addEventListener("click", handleClickOutside);
+
+    return () => document.body.removeEventListener("click", handleClickOutside);
+  }, []);
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"

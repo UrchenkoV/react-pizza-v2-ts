@@ -1,4 +1,21 @@
-export default function CartPizzaBlock({ title, image, price }) {
+import { useDispatch } from "react-redux";
+import { setItems, minusItem, deleteItem } from "../redux/slices/cartSlice";
+
+export default function CartPizzaBlock({
+  id,
+  title,
+  image,
+  price,
+  size,
+  type,
+  count,
+}) {
+  const dispatch = useDispatch();
+
+  const destroy = () => {
+    dispatch(deleteItem(id));
+  };
+
   return (
     <div className="cart__item">
       <div className="cart__item-img">
@@ -6,10 +23,15 @@ export default function CartPizzaBlock({ title, image, price }) {
       </div>
       <div className="cart__item-info">
         <h3>{title}</h3>
-        <p>тонкое тесто, 26 см.</p>
+        <p>
+          {type}, {size} см.
+        </p>
       </div>
       <div className="cart__item-count">
-        <div className="button button--outline button--circle cart__item-count-minus">
+        <div
+          onClick={() => dispatch(minusItem({ id }))}
+          className="button button--outline button--circle cart__item-count-minus"
+        >
           <svg
             width="10"
             height="10"
@@ -27,8 +49,11 @@ export default function CartPizzaBlock({ title, image, price }) {
             ></path>
           </svg>
         </div>
-        <b>2</b>
-        <div className="button button--outline button--circle cart__item-count-plus">
+        <b>{count}</b>
+        <div
+          onClick={() => dispatch(setItems({ id }))}
+          className="button button--outline button--circle cart__item-count-plus"
+        >
           <svg
             width="10"
             height="10"
@@ -50,8 +75,12 @@ export default function CartPizzaBlock({ title, image, price }) {
       <div className="cart__item-price">
         <b>{price} ₽</b>
       </div>
+
       <div className="cart__item-remove">
-        <div className="button button--outline button--circle">
+        <div
+          onClick={destroy}
+          className="button button--outline button--circle"
+        >
           <svg
             width="10"
             height="10"

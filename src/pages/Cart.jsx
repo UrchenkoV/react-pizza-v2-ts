@@ -1,23 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCart } from "../redux/slices/cartSlice";
 
 import CartEmpty from "../components/CartEmpty";
 import CartPizzaBlock from "../components/CartPizzaBlock";
 
 export default function Cart() {
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  //const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    fetch("/items")
-      .then((res) => res.json())
-      .then((data) => {
-        setItems(data);
-        console.log(data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
-  }, []);
+  const { items, totalPrice, totalCount } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const onClearCart = () => {
+    if (window.confirm("Очистить корзину?")) {
+      dispatch(clearCart());
+    }
+  };
 
   if (!isLoading && !items.length) {
     return <CartEmpty />;
@@ -59,7 +59,7 @@ export default function Cart() {
             </svg>
             Корзина
           </h2>
-          <div className="cart__clear">
+          <div onClick={onClearCart} className="cart__clear">
             <svg
               width="20"
               height="20"
@@ -102,20 +102,18 @@ export default function Cart() {
         </div>
 
         <div className="content__items">
-          {isLoading ? (
-            <p>Загрузка...</p>
-          ) : (
-            items.map((item) => <CartPizzaBlock key={item.id} {...item} />)
-          )}
+          {items.map((item) => (
+            <CartPizzaBlock key={item.id} {...item} />
+          ))}
         </div>
 
         <div className="cart__bottom">
           <div className="cart__bottom-details">
             <span>
-              Всего пицц: <b>3 шт.</b>
+              Всего пицц: <b>{totalCount} шт.</b>
             </span>
             <span>
-              Сумма заказа: <b>900 ₽</b>
+              Сумма заказа: <b>{totalPrice.toLocaleString()} ₽</b>
             </span>
           </div>
 
