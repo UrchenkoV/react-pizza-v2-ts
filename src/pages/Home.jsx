@@ -61,7 +61,7 @@ export default function Home() {
     setIsLoading(true);
     try {
       const { data } = await axios.get(
-        `/items?page=${currentPage}&limit=4${search}&${category}&orderBy=${orderBy}&order=${order}`
+        `https://6393398dab513e12c507abcf.mockapi.io/items?page=${currentPage}&limit=4${search}&${category}&orderBy=${orderBy}&order=${order}`
       );
       setItems(data);
     } catch (error) {
