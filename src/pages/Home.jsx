@@ -17,14 +17,11 @@ import PizzaBlockSkeleton from "../components/PizzaBlockSkeleton";
 import Sort, { sorts } from "../components/Sort";
 import Pagination from "../components/Pagination";
 
-import { AppContext } from "../layouts/Default";
-
 export default function Home() {
   const navigate = useNavigate();
   const isMounted = React.useRef(false);
   const isQuery = React.useRef(false);
 
-  const { searchValue } = React.useContext(AppContext);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -32,7 +29,8 @@ export default function Home() {
   }, []);
 
   const { items, status } = useSelector(selectPizzaData);
-  const { categoryId, sort, currentPage } = useSelector(selectFilter);
+  const { categoryId, sort, currentPage, searchValue } =
+    useSelector(selectFilter);
 
   const setQueryParams = () => {
     const params = qs.stringify(
