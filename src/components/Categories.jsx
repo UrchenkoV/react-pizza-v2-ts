@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setCategoryId } from "../redux/slices/filterSlice";
+import { selectFilter, setCategoryId } from "../redux/slices/filterSlice";
 
 const categories = [
   "Все",
@@ -12,7 +12,7 @@ const categories = [
 
 export default function Categories() {
   const dispatch = useDispatch();
-  const categoryId = useSelector((state) => state.filter.categoryId);
+  const { categoryId } = useSelector(selectFilter);
 
   return (
     <div className="categories">

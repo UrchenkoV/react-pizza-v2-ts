@@ -2,9 +2,13 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
-import { fetchPizzas } from "../redux/slices/pizzaSlice";
+import { fetchPizzas, selectPizzaData } from "../redux/slices/pizzaSlice";
 
-import { setCurrentPage, setQuery } from "../redux/slices/filterSlice";
+import {
+  selectFilter,
+  setCurrentPage,
+  setQuery,
+} from "../redux/slices/filterSlice";
 import { setTitle } from "../hook/baseHook";
 
 import Categories from "../components/Categories";
@@ -27,10 +31,8 @@ export default function Home() {
     setTitle("Главная");
   }, []);
 
-  const { items, status } = useSelector((state) => state.pizza);
-  const { categoryId, sort, currentPage } = useSelector(
-    (state) => state.filter
-  );
+  const { items, status } = useSelector(selectPizzaData);
+  const { categoryId, sort, currentPage } = useSelector(selectFilter);
 
   const setQueryParams = () => {
     const params = qs.stringify(

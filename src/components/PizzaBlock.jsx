@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setItems } from "../redux/slices/cartSlice";
+import { selectCart, setItems } from "../redux/slices/cartSlice";
 
 export default function PizzaBlock({
   id,
@@ -14,7 +14,7 @@ export default function PizzaBlock({
   const [typeActive, setTypeActive] = React.useState(1);
   const [sizeActive, setSizeActive] = React.useState(1);
 
-  const { items } = useSelector((state) => state.cart);
+  const { items } = useSelector(selectCart);
   const dispatch = useDispatch();
 
   const addToCart = () => {
