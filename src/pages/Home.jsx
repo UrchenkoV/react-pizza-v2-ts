@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
+import { fetchPizzas } from "../redux/slices/pizzaSlice";
 
 import { setCurrentPage, setQuery } from "../redux/slices/filterSlice";
+import { setTitle } from "../hook/baseHook";
 
 import Categories from "../components/Categories";
 import PizzaBlock from "../components/PizzaBlock";
@@ -16,14 +17,17 @@ import { AppContext } from "../layouts/Default";
 
 export default function Home() {
   const navigate = useNavigate();
-  const [items, setItems] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
   const isMounted = React.useRef(false);
   const isQuery = React.useRef(false);
 
   const { searchValue } = React.useContext(AppContext);
   const dispatch = useDispatch();
 
+  React.useEffect(() => {
+    setTitle("Главная");
+  }, []);
+
+  const { items, status } = useSelector((state) => state.pizza);
   const { categoryId, sort, currentPage } = useSelector(
     (state) => state.filter
   );
@@ -52,22 +56,13 @@ export default function Home() {
     isQuery.current = true;
   }
 
-  async function getPizzas() {
+  function getPizzas() {
     const category = categoryId > 0 ? `category_id=${categoryId}` : "";
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
     const orderBy = sort.sortProperty.replace("-", "");
     const search = searchValue ? `&title=${searchValue}` : "";
 
-    setIsLoading(true);
-    try {
-      const { data } = await axios.get(
-        `https://6393398dab513e12c507abcf.mockapi.io/items?page=${currentPage}&limit=4${search}&${category}&orderBy=${orderBy}&order=${order}`
-      );
-      setItems(data);
-    } catch (error) {
-      console.log(error);
-    }
-    setIsLoading(false);
+    dispatch(fetchPizzas({ category, order, orderBy, search, currentPage }));
   }
 
   React.useEffect(() => {
@@ -101,12 +96,27 @@ export default function Home() {
       <h2 className="content__title">Все пиццы</h2>
 
       <div className="content__items">
-        {isLoading
+        {status === "loading"
           ? [...new Array(10)].map((_, i) => <PizzaBlockSkeleton key={i} />)
           : items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
       </div>
 
-      <Pagination onChangePage={(number) => dispatch(setCurrentPage(number))} />
+      {status === "error" && (
+        <div className="NotFoundBlock_root__ZfXea">
+          <h1>
+            <span>😕</span>
+            <br />
+            Ой! Произошла ошибка.
+          </h1>
+          <p>Попробуйте обновить страницу или зайдите позже.</p>
+        </div>
+      )}
+
+      {status === "success" && (
+        <Pagination
+          onChangePage={(number) => dispatch(setCurrentPage(number))}
+        />
+      )}
     </div>
   );
 }

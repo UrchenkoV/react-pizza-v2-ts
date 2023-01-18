@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../redux/slices/cartSlice";
+import { setTitle } from "../hook/baseHook";
 
 import CartEmpty from "../components/CartEmpty";
 import CartPizzaBlock from "../components/CartPizzaBlock";
@@ -12,6 +13,10 @@ export default function Cart() {
 
   const { items, totalPrice, totalCount } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setTitle("Корзина");
+  }, []);
 
   const onClearCart = () => {
     if (window.confirm("Очистить корзину?")) {
