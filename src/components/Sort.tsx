@@ -7,6 +7,10 @@ type SortItem = {
   sortProperty: string;
 }
 
+type EventPath = MouseEvent & {
+  path: Node[]
+}
+
 export const sorts: SortItem[] = [
   { title: "Популярности (Убыванию)", sortProperty: "rating" },
   { title: "Популярности (Возрастанию)", sortProperty: "-rating" },
@@ -30,8 +34,9 @@ const Sort: React.FC = () => {
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (e: any) => {
-      if (sortRef.current && !e.path.includes(sortRef.current)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      const _e = e as EventPath
+      if (sortRef.current && !_e.path.includes(sortRef.current)) {
         setIsOpen(false);
       }
     };
