@@ -2,7 +2,17 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCart, setItems } from "../redux/slices/cartSlice";
 
-export default function PizzaBlock({
+type PizzaBlockProps = {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  sizes: any[];
+  types: any[];
+  category_id: number;
+}
+
+const PizzaBlock: React.FC<PizzaBlockProps> = ({
   id,
   title,
   price,
@@ -10,7 +20,7 @@ export default function PizzaBlock({
   sizes,
   types,
   category_id,
-}) {
+}) => {
   const [typeActive, setTypeActive] = React.useState(1);
   const [sizeActive, setSizeActive] = React.useState(1);
 
@@ -30,7 +40,7 @@ export default function PizzaBlock({
     );
   };
 
-  const totalCount = items.find((obj) => obj.id === id)?.count;
+  const totalCount = items.find((obj: any) => obj.id === id)?.count;
 
   return (
     <div className="pizza-block">
@@ -87,3 +97,5 @@ export default function PizzaBlock({
     </div>
   );
 }
+
+export default PizzaBlock

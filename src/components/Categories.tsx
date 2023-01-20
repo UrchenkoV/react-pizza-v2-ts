@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { selectFilter, setCategoryId } from "../redux/slices/filterSlice";
 
-const categories = [
+const categories: string[] = [
   "Все",
   "Мясные",
-  "Вегетарианская",
+  "Постная",
   "Гриль",
   "Острые",
   "Закрытые",

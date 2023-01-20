@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart, selectCart } from "../redux/slices/cartSlice";
@@ -7,7 +7,7 @@ import { setTitle } from "../hook/baseHook";
 import CartEmpty from "../components/CartEmpty";
 import CartPizzaBlock from "../components/CartPizzaBlock";
 
-export default function Cart() {
+const Cart: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { items, totalPrice, totalCount } = useSelector(selectCart);
@@ -106,7 +106,7 @@ export default function Cart() {
         </div>
 
         <div className="content__items">
-          {items.map((item) => (
+          {items.map((item: any) => (
             <CartPizzaBlock key={item.id} {...item} />
           ))}
         </div>
@@ -154,3 +154,5 @@ export default function Cart() {
     </div>
   );
 }
+
+export default Cart

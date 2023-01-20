@@ -1,7 +1,18 @@
+import React from 'react'
 import { useDispatch } from "react-redux";
 import { setItems, minusItem, deleteItem } from "../redux/slices/cartSlice";
 
-export default function CartPizzaBlock({
+type CartPizzaBlockProps = {
+  id: number;
+  title: string;
+  image: string;
+  price: number;
+  size: string;
+  type: string;
+  count: number;
+}
+
+const CartPizzaBlock: React.FC<CartPizzaBlockProps> = ({
   id,
   title,
   image,
@@ -9,7 +20,7 @@ export default function CartPizzaBlock({
   size,
   type,
   count,
-}) {
+}) => {
   const dispatch = useDispatch();
 
   const destroy = () => {
@@ -102,3 +113,5 @@ export default function CartPizzaBlock({
     </div>
   );
 }
+
+export default CartPizzaBlock

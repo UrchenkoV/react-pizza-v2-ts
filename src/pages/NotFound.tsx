@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import React from "react";
 
 import NotFoundBlock from "../components/NotFoundBlock";
 import { setTitle } from "../hook/baseHook";
 
-export default function NotFound() {
-  useEffect(() => {
+const NotFound: React.FC = () => {
+  React.useEffect(() => {
     setTitle("404");
   }, []);
 
   return <NotFoundBlock />;
 }
+
+export default NotFound

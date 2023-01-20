@@ -7,7 +7,7 @@ import { selectFilter, setSearchValue } from "../../redux/slices/filterSlice";
 
 export default function Search() {
   const [value, setValue] = React.useState("");
-  const inputRef = React.useRef(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const { searchValue } = useSelector(selectFilter);
   const dispatch = useDispatch();
 
@@ -15,7 +15,7 @@ export default function Search() {
     setValue("");
 
     dispatch(setSearchValue(""));
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
   const updateSearchValue = React.useCallback(
@@ -25,7 +25,7 @@ export default function Search() {
     []
   );
 
-  const onChangeInput = (str) => {
+  const onChangeInput = (str: string) => {
     setValue(str);
     updateSearchValue(str);
   };

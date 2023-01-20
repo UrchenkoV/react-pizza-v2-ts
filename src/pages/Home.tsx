@@ -17,7 +17,7 @@ import PizzaBlockSkeleton from "../components/PizzaBlockSkeleton";
 import Sort, { sorts } from "../components/Sort";
 import Pagination from "../components/Pagination";
 
-export default function Home() {
+const Home: React.FC = () => {
   const navigate = useNavigate();
   const isMounted = React.useRef(false);
   const isQuery = React.useRef(false);
@@ -61,7 +61,7 @@ export default function Home() {
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
     const orderBy = sort.sortProperty.replace("-", "");
     const search = searchValue ? `&title=${searchValue}` : "";
-
+    // @ts-ignore
     dispatch(fetchPizzas({ category, order, orderBy, search, currentPage }));
   }
 
@@ -98,7 +98,7 @@ export default function Home() {
       <div className="content__items">
         {status === "loading"
           ? [...new Array(10)].map((_, i) => <PizzaBlockSkeleton key={i} />)
-          : items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
+          : items.map((obj: any) => <PizzaBlock key={obj.id} {...obj} />)}
       </div>
 
       {status === "error" && (
@@ -114,9 +114,11 @@ export default function Home() {
 
       {status === "success" && (
         <Pagination
-          onChangePage={(number) => dispatch(setCurrentPage(number))}
+          onChangePage={(number: number) => dispatch(setCurrentPage(number))}
         />
       )}
     </div>
   );
 }
+
+export default Home
