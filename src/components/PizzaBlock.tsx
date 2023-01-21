@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCart, setItems } from "../redux/slices/cartSlice";
 
-type PizzaBlockProps = {
+export type PizzaBlockProps = {
   id: number;
   title: string;
   price: number;
@@ -36,11 +36,12 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
         image,
         type: types.find((t) => t.id === typeActive).title,
         size: sizes.find((s) => s.id === sizeActive).value,
+        count: 0
       })
     );
   };
 
-  const totalCount = items.find((obj: any) => obj.id === id)?.count;
+  const totalCount = items.find((obj) => obj.id === id)?.count;
 
   return (
     <div className="pizza-block">
@@ -91,7 +92,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
           </svg>
           <span>Добавить</span>
 
-          {totalCount > 0 && <i>{totalCount}</i>}
+          {totalCount && <i>{totalCount}</i>}
         </button>
       </div>
     </div>

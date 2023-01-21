@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setSort } from "../redux/slices/filterSlice";
 
-type SortItem = {
+export type SortItem = {
   title: string;
   sortProperty: string;
 }

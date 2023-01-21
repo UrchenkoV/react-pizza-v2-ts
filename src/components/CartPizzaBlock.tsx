@@ -1,18 +1,8 @@
 import React from 'react'
 import { useDispatch } from "react-redux";
-import { setItems, minusItem, deleteItem } from "../redux/slices/cartSlice";
+import { setItems, minusItem, deleteItem, CartItem } from "../redux/slices/cartSlice";
 
-type CartPizzaBlockProps = {
-  id: number;
-  title: string;
-  image: string;
-  price: number;
-  size: string;
-  type: string;
-  count: number;
-}
-
-const CartPizzaBlock: React.FC<CartPizzaBlockProps> = ({
+const CartPizzaBlock: React.FC<CartItem> = ({
   id,
   title,
   image,
@@ -40,7 +30,7 @@ const CartPizzaBlock: React.FC<CartPizzaBlockProps> = ({
       </div>
       <div className="cart__item-count">
         <div
-          onClick={() => dispatch(minusItem({ id }))}
+          onClick={() => dispatch(minusItem({id} as CartItem))}
           className="button button--outline button--circle cart__item-count-minus"
         >
           <svg
@@ -62,7 +52,7 @@ const CartPizzaBlock: React.FC<CartPizzaBlockProps> = ({
         </div>
         <b>{count}</b>
         <div
-          onClick={() => dispatch(setItems({ id }))}
+          onClick={() => dispatch(setItems({id} as CartItem))}
           className="button button--outline button--circle cart__item-count-plus"
         >
           <svg

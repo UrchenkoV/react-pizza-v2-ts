@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
-import { fetchPizzas, selectPizzaData } from "../redux/slices/pizzaSlice";
+import { fetchPizzas, selectPizzaData, Status } from "../redux/slices/pizzaSlice";
 
 import {
   selectFilter,
@@ -16,13 +16,14 @@ import PizzaBlock from "../components/PizzaBlock";
 import PizzaBlockSkeleton from "../components/PizzaBlockSkeleton";
 import Sort, { sorts } from "../components/Sort";
 import Pagination from "../components/Pagination";
+import { useAppDispatch } from "../redux/store";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const isMounted = React.useRef(false);
   const isQuery = React.useRef(false);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
     setTitle("Главная");
@@ -61,7 +62,7 @@ const Home: React.FC = () => {
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
     const orderBy = sort.sortProperty.replace("-", "");
     const search = searchValue ? `&title=${searchValue}` : "";
-    // @ts-ignore
+    
     dispatch(fetchPizzas({ category, order, orderBy, search, currentPage }));
   }
 
@@ -101,7 +102,7 @@ const Home: React.FC = () => {
           : items.map((obj: any) => <PizzaBlock key={obj.id} {...obj} />)}
       </div>
 
-      {status === "error" && (
+      {status === Status.ERROR && (
         <div className="NotFoundBlock_root__ZfXea">
           <h1>
             <span>😕</span>
@@ -112,7 +113,7 @@ const Home: React.FC = () => {
         </div>
       )}
 
-      {status === "success" && (
+      {status === Status.SUCCESS && (
         <Pagination
           onChangePage={(number: number) => dispatch(setCurrentPage(number))}
         />
