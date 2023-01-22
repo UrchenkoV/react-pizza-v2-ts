@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
@@ -10,12 +10,10 @@ import "./assets/scss/app.scss";
 import Default from "./layouts/Default";
 
 import Home from "./pages/Home";
-import Cart from "./pages/Cart";
-import NotFound from "./pages/NotFound";
+import Loading from "./components/Loading";
 
-/**
- *
- */
+const Cart = React.lazy(() => import(/* webpackChunkName: "Cart" */ './pages/Cart'))
+const NotFound = React.lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/NotFound'))
 
 const router = createBrowserRouter([
   {
@@ -28,11 +26,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: <Suspense fallback={<Loading />}><Cart /></Suspense>,
       },
       {
         path: '*',
-        element: <NotFound />
+        element: <Suspense fallback={<Loading />}><NotFound /></Suspense> 
       },
     ],
     
