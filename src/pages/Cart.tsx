@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { clearCart, selectCart } from "../redux/slices/cartSlice";
-import { setTitle } from "../hook/baseHook";
+import { setTitle } from "../utils/baseHook";
 
 import CartEmpty from "../components/CartEmpty";
 import CartPizzaBlock from "../components/CartPizzaBlock";
+import { clearCart, selectCart } from "../redux/cart/slice";
 
 const Cart: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);

@@ -1,11 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setSort } from "../redux/slices/filterSlice";
+import { setSort } from "../redux/filter/slice";
+import { SortItem } from "../redux/filter/types";
 
-export type SortItem = {
-  title: string;
-  sortProperty: string;
-}
+
 
 type EventPath = MouseEvent & {
   path: Node[]

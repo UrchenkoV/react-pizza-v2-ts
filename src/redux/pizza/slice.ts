@@ -1,26 +1,12 @@
-import { PizzaBlockProps } from "./../../components/PizzaBlock";
-import { RootState } from "./../store";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-export enum Status {
-  LOADING = "loading",
-  SUCCESS = "success",
-  ERROR = "error",
-}
-
-type FetchPizzaType = {
-  category: string;
-  order: string;
-  orderBy: string;
-  search: string;
-  currentPage: number;
-};
-
-interface PizzaSliceState {
-  items: PizzaBlockProps[];
-  status: Status;
-}
+import { RootState } from "../store";
+import {
+  FetchPizzaType,
+  PizzaBlockProps,
+  PizzaSliceState,
+  Status,
+} from "./types";
 
 export const fetchPizzas = createAsyncThunk<PizzaBlockProps[], FetchPizzaType>(
   "pizza/fetchPizzaStatus",

@@ -1,7 +1,7 @@
 import React from "react";
 
 import NotFoundBlock from "../components/NotFoundBlock";
-import { setTitle } from "../hook/baseHook";
+import { setTitle } from "../utils/baseHook";
 
 const NotFound: React.FC = () => {
   React.useEffect(() => {

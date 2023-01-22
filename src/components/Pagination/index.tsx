@@ -1,7 +1,7 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 import { useSelector } from "react-redux";
-import { selectFilter } from "../../redux/slices/filterSlice";
+import { selectFilter } from "../../redux/filter/slice";
 
 import styles from "./Pagination.module.scss";
 

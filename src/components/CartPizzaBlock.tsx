@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from "react-redux";
-import { setItems, minusItem, deleteItem, CartItem } from "../redux/slices/cartSlice";
+import { deleteItem, minusItem, setItems } from '../redux/cart/slice';
+import { CartItem } from '../redux/cart/types';
 
 const CartPizzaBlock: React.FC<CartItem> = ({
   id,

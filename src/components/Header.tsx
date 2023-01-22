@@ -1,11 +1,21 @@
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Search from "./Search";
-import { selectCart } from "../redux/slices/cartSlice";
+import React from "react";
+import { selectCart } from "../redux/cart/slice";
 
 export default function Header() {
-  const { totalPrice, totalCount } = useSelector(selectCart);
+  const { items, totalPrice, totalCount } = useSelector(selectCart);
   const location = useLocation()
+  const isMounted = React.useRef(false)
+
+  React.useEffect(() => {
+    if(isMounted.current) {
+      window.localStorage.setItem('cart', JSON.stringify(items))
+    }
+    isMounted.current = true
+    
+  }, items)
 
   return (
     <div className="header">
