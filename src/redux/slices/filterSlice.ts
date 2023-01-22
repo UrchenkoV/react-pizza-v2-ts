@@ -6,7 +6,7 @@ type SortItemProps = {
   sortProperty: "rating" | "price" | "title" | "-rating" | "-price" | "-title";
 };
 
-interface FilterSliceState {
+export interface FilterSliceState {
   categoryId: number;
   sort: SortItemProps;
   currentPage: number;

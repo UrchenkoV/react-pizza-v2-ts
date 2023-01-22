@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Search from "./Search";
 import { selectCart } from "../redux/slices/cartSlice";
 
 export default function Header() {
   const { totalPrice, totalCount } = useSelector(selectCart);
+  const location = useLocation()
 
   return (
     <div className="header">
@@ -19,7 +20,7 @@ export default function Header() {
           </div>
         </Link>
 
-        <Search />
+        {location.pathname !== '/cart' && <Search />}
 
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">

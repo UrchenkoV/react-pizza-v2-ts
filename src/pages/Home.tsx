@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
 import { fetchPizzas, selectPizzaData, Status } from "../redux/slices/pizzaSlice";
@@ -22,7 +22,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   const isMounted = React.useRef(false);
   const isQuery = React.useRef(false);
-
+  
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
@@ -32,7 +32,7 @@ const Home: React.FC = () => {
   const { items, status } = useSelector(selectPizzaData);
   const { categoryId, sort, currentPage, searchValue } =
     useSelector(selectFilter);
-
+    
   const setQueryParams = () => {
     const params = qs.stringify(
       {
@@ -90,7 +90,7 @@ const Home: React.FC = () => {
   return (
     <div className="container">
       <div className="content__top">
-        <Categories />
+        <Categories categoryId={categoryId} />
 
         <Sort />
       </div>

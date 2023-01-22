@@ -20,7 +20,7 @@ export const sorts: SortItem[] = [
   { title: "Алфавиту (Возрастанию)", sortProperty: "-title" },
 ];
 
-const Sort: React.FC = () => {
+const Sort: React.FC = React.memo(() => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [isOpen, setIsOpen] = React.useState(false);
   const sortRef = React.useRef<HTMLDivElement>(null);
@@ -84,6 +84,6 @@ const Sort: React.FC = () => {
       )}
     </div>
   );
-}
+}) 
 
 export default Sort

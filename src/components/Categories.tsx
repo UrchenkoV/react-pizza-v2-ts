@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectFilter, setCategoryId } from "../redux/slices/filterSlice";
+import { useDispatch } from "react-redux";
+import { setCategoryId } from "../redux/slices/filterSlice";
 
 const categories: string[] = [
   "Все",
@@ -11,9 +11,12 @@ const categories: string[] = [
   "Закрытые",
 ];
 
-const Categories: React.FC = () => {
+type CategoryIdType = {
+  categoryId: number;
+}
+
+const Categories: React.FC<CategoryIdType> = React.memo(({categoryId}) => {
   const dispatch = useDispatch();
-  const { categoryId } = useSelector(selectFilter);
 
   return (
     <div className="categories">
@@ -30,6 +33,6 @@ const Categories: React.FC = () => {
       </ul>
     </div>
   );
-}
+}) 
 
 export default Categories
